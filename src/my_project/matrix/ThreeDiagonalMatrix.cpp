@@ -3,6 +3,7 @@
 //
 
 #include "ThreeDiagonalMatrix.hpp"
+#include <iostream>
 
 namespace Slae::Matrix {
 
@@ -10,7 +11,7 @@ namespace Slae::Matrix {
 
     double &ThreeDiagonalMatrix::operator()(int i, int j) {
 #ifndef NDEBUG
-        if (i >= data_.size()) {
+        if (i >= static_cast<int>(data_.size())) {
             std::stringstream buf;
             buf << "Index i out of range! Input index"  << i << ". Matrix size: " << data_.size() << "Файл: " << __FILE__ << ". Строка: " << __LINE__;
             throw SlaeBaseExceptionCpp(buf.str());
@@ -27,7 +28,7 @@ namespace Slae::Matrix {
 
     const double &ThreeDiagonalMatrix::operator()(int i, int j) const {
 #ifndef NDEBUG
-        if (i >= data_.size()) {
+        if (i >= static_cast<int>(data_.size())) {
             std::stringstream buf;
             buf << "Index i out of range! Input index"  << i << ". Matrix size: " << data_.size() << "Файл: " << __FILE__ << ". Строка: " << __LINE__;
             throw SlaeBaseExceptionCpp(buf.str());

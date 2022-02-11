@@ -11,7 +11,7 @@ namespace Slae::Solvers{
             buf << "Matrix has unequal sizes! Matrix size: " << matrix.rows() << ". Col size: " << col.size() << ".File:" << __FILE__ << ". Row: " << __LINE__;
             throw SlaeBaseExceptionCpp(buf.str());
         } else {
-            int size = matrix.rows();
+            int size = static_cast<int>(matrix.rows());
             std::vector<std::array<double, 2>> RunThroughCoefficients(size);
             RunThroughCoefficients[0][0] = -matrix(0, 2) / matrix(0, 1);
             RunThroughCoefficients[0][1] = col[0] / matrix(0, 1);

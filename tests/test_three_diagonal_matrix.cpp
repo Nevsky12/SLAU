@@ -6,12 +6,13 @@
 #include <my_project/SlaeBaseException.hpp>
 #include <my_project/solvers/ThreeDiagonalSolver.hpp>
 
-TEST(TestThreeDiagonalSolver, test1) {
+TEST(TestThreeDiagonalSolver, Test) {
 
-    Slae::Matrix::ThreeDiagonalMatrix TestFirstMatrix(4);
+//    Slae::Matrix::ThreeDiagonalMatrix TestFirstMatrix(4);
+    auto TestFirstMatrix = Slae::Matrix::ThreeDiagonalMatrix::Zero(4);
     TestFirstMatrix(0, 0) = 1.;
     TestFirstMatrix(0, 1) = 1.;
-    TestFirstMatrix(1,0) = 0.;
+    TestFirstMatrix(1, 0) = 0.;
     TestFirstMatrix(1, 1) = 1.;
     TestFirstMatrix(1, 2) = 0.;
     TestFirstMatrix(2, 0) = 0.;
@@ -32,7 +33,7 @@ TEST(TestThreeDiagonalSolver, test1) {
     solve[1] = 2.;
     solve[2] = 1.;
     solve[3] = 2.;
-    auto res = Slae::Solvers::solveThreeDiagonal(TestFirstMatrix, cols);
+    std::vector<double> res = std::move(Slae::Solvers::solveThreeDiagonal(TestFirstMatrix, cols));
 
     ASSERT_EQ(solve.size(), res.size()) << "Vectors solve and res are of unequal length";
     for (int i = 0; i < res.size(); ++i) {
