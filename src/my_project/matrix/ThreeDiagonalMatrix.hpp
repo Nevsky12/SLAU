@@ -52,7 +52,7 @@ namespace Slae::Matrix {
          * @param j индекс столбца элемента
          * @return элемент с индексами i, j
          *
-         *          * @throw SlaeBaseExceptionCpp выбрасывается, если данные индексы выходят за границы диапазона трёхдиагональной матрицы: i in {0, ..., data.size()}; j in {0, 1, 2}
+         * @throw SlaeBaseExceptionCpp выбрасывается, если данные индексы выходят за границы диапазона трёхдиагональной матрицы: i in {0, ..., data.size()}; j in {0, 1, 2}
         */
         [[nodiscard]] const double &operator()(int i, int j) const;
     };
