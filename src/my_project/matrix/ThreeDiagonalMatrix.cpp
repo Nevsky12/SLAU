@@ -2,7 +2,7 @@
 // Created by alexander on 05.02.2022.
 //
 
-#include "ThreeDiagonalMatrix.h"
+#include "ThreeDiagonalMatrix.hpp"
 
 namespace Slae::Matrix {
 
@@ -44,7 +44,7 @@ namespace Slae::Matrix {
     ThreeDiagonalMatrix ThreeDiagonalMatrix::Zero(int size) {
         ThreeDiagonalMatrix res(size);
         for (auto& string: res.data_) {
-            string = {0., 0., 0., 0.};
+            string = {0., 0., 0.};
         }
         return res;
     }
