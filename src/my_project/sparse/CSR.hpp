@@ -172,10 +172,6 @@ namespace Slae::Matrix {
             return s.size();
         }
     };
-
-    template<typename T>
-    std::ostream &operator<<(std::ostream &os, const CSR<T> &A);
-
 } //Slae::CSR
 
 #endif //SOLE2022_CSR_HPP
