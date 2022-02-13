@@ -9,9 +9,9 @@
 TEST(TestThreeDiagonalSolver, Test) {
 
 //    Slae::Matrix::ThreeDiagonalMatrix TestFirstMatrix(4);
-    auto TestFirstMatrix = Slae::Matrix::ThreeDiagonalMatrix::Zero(4);
-    TestFirstMatrix(0, 0) = 1.;
+    Slae::Matrix::ThreeDiagonalMatrix TestFirstMatrix(4);
     TestFirstMatrix(0, 1) = 1.;
+    TestFirstMatrix(0, 2) = 1.;
     TestFirstMatrix(1, 0) = 0.;
     TestFirstMatrix(1, 1) = 1.;
     TestFirstMatrix(1, 2) = 0.;
@@ -33,10 +33,11 @@ TEST(TestThreeDiagonalSolver, Test) {
     solve[1] = 2.;
     solve[2] = 1.;
     solve[3] = 2.;
-    std::vector<double> res = std::move(Slae::Solvers::solveThreeDiagonal(TestFirstMatrix, cols));
+
+    std::vector<double> res = Slae::Solvers::solveThreeDiagonal(TestFirstMatrix, cols);
 
     ASSERT_EQ(solve.size(), res.size()) << "Vectors solve and res are of unequal length";
     for (int i = 0; i < res.size(); ++i) {
-        EXPECT_EQ(solve[i], res[i]) << "RunThroughMethod gives another result than correct analitics resullt. RunThroughMethod result: " << solve[i] << " Analitics result: " << res[i];
+        EXPECT_EQ(solve[i], res[i]) << "RunThroughMethod gives another result than correct analitics resullt. RunThroughMethod result: " << res[i] << " Analitics result: " << solve[i];
     }
 }

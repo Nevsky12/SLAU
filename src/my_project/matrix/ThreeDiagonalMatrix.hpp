@@ -16,6 +16,7 @@ namespace Slae::Matrix {
         std::vector<std::array<double, 3>> data_;
 
     public:
+
         /* @brief Возвращает нулевую трёхдиагональную матрицу
          * Возвращает трёхдиагональую матрицу, полностью составленную из нулей
          *
@@ -58,7 +59,5 @@ namespace Slae::Matrix {
     };
 
 } // namespace Slae::Matrix
-
-
 
 #endif //MY_PROJECT_MATRIX_H

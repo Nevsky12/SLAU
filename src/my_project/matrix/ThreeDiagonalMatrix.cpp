@@ -7,7 +7,7 @@
 
 namespace Slae::Matrix {
 
-    ThreeDiagonalMatrix::ThreeDiagonalMatrix(int size) : data_(size) {}
+    ThreeDiagonalMatrix::ThreeDiagonalMatrix(int size): data_(size) {}
 
     double &ThreeDiagonalMatrix::operator()(int i, int j) {
 #ifndef NDEBUG
@@ -30,7 +30,7 @@ namespace Slae::Matrix {
 #ifndef NDEBUG
         if (i >= static_cast<int>(data_.size())) {
             std::stringstream buf;
-            buf << "Index i out of range! Input index"  << i << ". Matrix size: " << data_.size() << "Файл: " << __FILE__ << ". Строка: " << __LINE__;
+            buf << "Index i out of range! Input index"  << i << ". Matrix size: " << static_cast<int>(data_.size()) << "Файл: " << __FILE__ << ". Строка: " << __LINE__;
             throw SlaeBaseExceptionCpp(buf.str());
         }
         if (j > 2) {
@@ -49,7 +49,6 @@ namespace Slae::Matrix {
         }
         return res;
     }
-
 }
 
 int Slae::Matrix::ThreeDiagonalMatrix::rows() const noexcept {

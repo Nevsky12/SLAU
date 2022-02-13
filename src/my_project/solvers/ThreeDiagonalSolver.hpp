@@ -22,7 +22,7 @@ namespace Slae::Solvers{
      *
      * @throw SlaeBaseExceptionCpp выбрасывается, если строк матрицы и высота столбца не совпадают
     */
-    [[nodiscard]] std::vector<double> solveThreeDiagonal(const Matrix::ThreeDiagonalMatrix& matrix, const std::vector<double>& col);
+    [[nodiscard]] std::vector<double> solveThreeDiagonal(const Slae::Matrix::ThreeDiagonalMatrix& matrix, const std::vector<double>& col);
 }
 
 
