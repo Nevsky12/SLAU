@@ -127,7 +127,7 @@ namespace Slae::Matrix {
          * @return число строк
         */
         [[nodiscard]] idx_t rows() const noexcept {
-            return H_;
+            return this->H_;
         }
 
         /* @brief Возвращает число фактических столбцов матрицы
@@ -136,7 +136,7 @@ namespace Slae::Matrix {
          * @return число фактических столбцов
         */
         [[nodiscard]] idx_t cols() const noexcept{
-            return W_;
+            return this->W_;
         }
     };
 } //Slae::CSR
