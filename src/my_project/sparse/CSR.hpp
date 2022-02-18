@@ -101,37 +101,6 @@ namespace Slae::Matrix {
             return static_cast<elm_t>(0);
         }
 
-        /* @brief Оператор получения элемента матрицы
-       * Оператор получения элемента с данными индексами по ссылке
-       *
-       * @param i индекс строки элемента
-       * @param j индекс столбца элемента
-       * @return элемент с индексами i, j
-       *
-       * @throw SlaeBaseExceptionCpp выбрасывается, если данные индексы выходят за границы диапазона трёхдиагональной матрицы: i in {0, ..., rows_.data()}; j in {0, ..., cols_data()}
-      */
-        elm_t &operator()(idx_t const i, idx_t const j) {
-#ifndef NDEBUG
-            if (i > rows_.size() || i < 0) {
-                std::stringstream buf;
-                buf << "Index i out of range! Input index" << i << ". Matrix size: " << rows_.size() << "Файл: "
-                    << __FILE__ << ". Строка: " << __LINE__;
-                throw Slae::SlaeBaseExceptionCpp(buf.str());
-            }
-            if (j > cols_.size() || j < 0) {
-                std::stringstream buf;
-                buf << "Index j out of range! Input index" << j << ". Matrix size: " << cols_.size() << "Файл: "
-                    << __FILE__ << ". Строка: " << __LINE__;
-                throw Slae::SlaeBaseExceptionCpp(buf.str());
-            }
-#endif
-            idx_t skip = this->rows_[i];
-            for (idx_t k = skip; k < this->rows_[i + 1]; ++k) {
-                if (this->cols_[k] == j) return this->values_[k];
-            }
-            return static_cast<elm_t>(0);
-        }
-
         /* @brief Оператор умножения матрицы на вектор
           * Оператор умножения матрицы CSR на вектор-столбец по правилам умножения матрицы CSR на вектор
           *
@@ -158,7 +127,7 @@ namespace Slae::Matrix {
          * @return число строк
         */
         [[nodiscard]] idx_t rows() const noexcept {
-            return rows_.size() - 1;
+            return H_;
         }
 
         /* @brief Возвращает число фактических столбцов матрицы
@@ -167,9 +136,7 @@ namespace Slae::Matrix {
          * @return число фактических столбцов
         */
         [[nodiscard]] idx_t cols() const noexcept{
-            std::set<T> s(std::make_move_iterator(cols_.begin()),
-                          std::make_move_iterator(cols_.end()));
-            return s.size();
+            return W_;
         }
     };
 } //Slae::CSR
