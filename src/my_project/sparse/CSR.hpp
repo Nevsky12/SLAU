@@ -19,14 +19,28 @@ namespace Slae::Matrix {
     public:
         using elm_t = T;          // Тип данных элементов матрицы
         using idx_t = std::size_t;// Тип индекса
-
-    private:
-        const idx_t H_, W_;          //Размеры матрицы
         std::vector<elm_t> values_;  //Вектор значений (размер N - кол-во ненулевых элементов)
         std::vector<idx_t> cols_;    // Вектор номеров столбцов, соответствующих значениям (размер N - кол-во ненулевых элементов)
         std::vector<idx_t> rows_;    // Вектор индексации строк размера H+1, первый элемент = 0 в качестве запирающего
 
+    private:
+        const idx_t H_, W_;          //Размеры матрицы
+
+        template<class El>
+        friend std::vector<El>
+        Jacobi(const Slae::Matrix::CSR<El> &A, const std::vector<El> &b, const std::vector<El> &initialState,
+               const El &tolerance);
+
+        template<class El>
+        friend std::vector<El>
+        GaussSeidel(const Slae::Matrix::CSR<El> &A, const std::vector<El> &b, const std::vector<El> &initialState,
+                    const El &tolerance);
+
+        template<typename El>
+        friend std::vector<El> SimpleIteration(const Slae::Matrix::CSR<El> &A, const std::vector<El> &b, const El &tao);
+
     public:
+
         /* @brief Конструктор разреженной матрицы по данным векторам
          * Конструктор матрицы CSR на основе получаемых векторов, содержащих всю информацию о значениях; номерах стобцов, соответствующим значениям ненулевых
          * элементов; индексации строк, где первый жэлемент - запирающиц нуль
@@ -126,7 +140,7 @@ namespace Slae::Matrix {
          *
          * @return число строк
         */
-        [[nodiscard]] idx_t rows() const noexcept {
+        [[nodiscard]] idx_t rows_number() const noexcept {
             return this->H_;
         }
 
@@ -135,7 +149,7 @@ namespace Slae::Matrix {
          *
          * @return число фактических столбцов
         */
-        [[nodiscard]] idx_t cols() const noexcept{
+        [[nodiscard]] idx_t cols_number() const noexcept {
             return this->W_;
         }
     };

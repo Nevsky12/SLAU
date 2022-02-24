@@ -17,13 +17,13 @@ TEST(TestCSR, Test) {
     Slae::Matrix::CSR<double> TestMatrix(4, 4, Data);
 
 
-    std::vector<double> cols(TestMatrix.cols());
+    std::vector<double> cols(TestMatrix.cols_number());
     cols[0] = 1.;
     cols[1] = 1.;
     cols[2] = 0.;
     cols[3] = 2.;
 
-    std::vector<double> solve(TestMatrix.rows());
+    std::vector<double> solve(TestMatrix.rows_number());
     solve[0] = 1.;
     solve[1] = 1.;
     solve[2] = 7.;
