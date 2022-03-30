@@ -33,8 +33,7 @@ namespace Slae::Matrix {
 
         template<class El>
         friend std::vector<El>
-        GaussSeidel(const Slae::Matrix::CSR<El> &A, const std::vector<El> &b, const std::vector<El> &initialState,
-                    const El &tolerance);
+        GaussSeidelIter(const Slae::Matrix::CSR<El> &A, const std::vector<El> &b, std::vector<El> x);
 
         template<typename El>
         friend std::vector<El> SimpleIteration(const Slae::Matrix::CSR<El> &A, const std::vector<El> &b, const El &tao);
@@ -51,7 +50,7 @@ namespace Slae::Matrix {
          * @param c вектор индексации столбцов
          * @param r вектор индексации строк
         */
-        CSR(const idx_t &h, const idx_t &w, const std::vector<T> &v, const std::vector<T> &c, const std::vector<T> &r)
+        CSR(const idx_t &h, const idx_t &w, const std::vector<elm_t> &v, const std::vector<idx_t> &c, const std::vector<idx_t> &r)
                 : H_(h), W_(w), values_(v), cols_(c), rows_(r) {}
 
         /* @brief Конструктор разреженной матрицы по сету из Triplet

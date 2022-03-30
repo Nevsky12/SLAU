@@ -15,7 +15,7 @@
  */
 template<typename T>
 std::vector<T> operator*(const T &k, const std::vector<T> &b) {
-    std::vector<T> temp(b.size());
+    std::vector<T> temp(b.size(), static_cast<T>(0));
     for (std::size_t i = 0; i < b.size(); ++i) {
         temp[i] = b[i] * k;
     }
@@ -31,7 +31,7 @@ std::vector<T> operator*(const T &k, const std::vector<T> &b) {
  */
 template<typename T>
 std::vector<T> operator*(const std::vector<T> &b, const T &k) {
-    std::vector<T> temp(b.size());
+    std::vector<T> temp(b.size(), static_cast<T>(0));
     for (std::size_t i = 0; i < b.size(); ++i) {
         temp[i] = b[i] * k;
     }
@@ -46,7 +46,13 @@ std::vector<T> operator*(const std::vector<T> &b, const T &k) {
  * @return Результат скалярного перемножения
  */
 template<typename T>
-T operator*(const std::vector<T> &a, const std::vector<T> &b);
+T operator*(const std::vector<T> &a, const std::vector<T> &b) {
+    T res;
+    for (int i = 0; i < a.size(); ++i) {
+        res += a[i] * b[i];
+    }
+    return res;
+}
 
 /***
  * Вычитание двух векторов
@@ -58,7 +64,7 @@ T operator*(const std::vector<T> &a, const std::vector<T> &b);
 template<typename T>
 std::vector<T> operator-(const std::vector<T> &a, const std::vector<T> &b) {
     std::vector<T> temp;
-    temp.resize(a.size(), 0);
+    temp.resize(a.size(), static_cast<T>(0));
     for (int i = 0; i < a.size(); ++i) {
         temp[i] = a[i] - b[i];
     }
@@ -73,9 +79,21 @@ std::vector<T> operator-(const std::vector<T> &a, const std::vector<T> &b) {
  * @return Результат сложения векторов
  */
 template<typename T>
-std::vector<T> operator+(const std::vector<T> &a, const std::vector<T> &b);
+std::vector<T> operator+(const std::vector<T> &a, const std::vector<T> &b) {
+    std::vector<T> temp;
+    temp.resize(a.size(), static_cast<T>(0));
+    for (int i = 0; i < a.size(); ++i) {
+        temp[i] = a[i] + b[i];
+    }
+    return temp;
+}
 
 template<typename T>
-std::ostream &operator<<(std::ostream &os, const std::vector<T> &b);
+std::ostream &operator<<(std::ostream &os, const std::vector<T> &b) {
+    for (int i = 0; i < b.size(); ++i) {
+        os << b[i] << " ";
+    }
+    return os;
+}
 
 #endif//SLAE_OVERLOADS_HPP
