@@ -36,7 +36,7 @@ TEST(TestGaussZeidel, Test) {
     InitialState[2] = 0.;
     InitialState[3] = 0.;
 
-    double Tolerance = 0.88;
+    double Tolerance = 0.87;
 
     auto res = Slae::Solvers::GaussSeidel(TestMatrix, b, InitialState, Tolerance);
     ASSERT_EQ(AnaliticSolve.size(), res.size()) << "Vectors solve and res are of unequal length";

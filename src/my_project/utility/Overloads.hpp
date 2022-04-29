@@ -47,11 +47,28 @@ std::vector<T> operator*(const std::vector<T> &b, const T &k) {
  */
 template<typename T>
 T operator*(const std::vector<T> &a, const std::vector<T> &b) {
-    T res;
+    T res = static_cast<T>(0);
     for (int i = 0; i < a.size(); ++i) {
         res += a[i] * b[i];
     }
     return res;
+}
+
+/***
+ * Выделение подвектора в векторе
+ * @param T Тип элементов векторов
+ * @param a Вектор, в котором мы хотим выделить подвектор
+ * @param firstIndex Индекс начала (индексация с 0)
+ * @param endIndex Индекс конца (итерации идут до endIndex + 1, поэтому указываем индекс, будто итерируемся по массиву)
+ * @return Подвектор
+ */
+template<typename T>
+std::vector<T> slice(const std::vector<T> &a, int firstIndex, int endIndex) {
+    std::vector<T> result(endIndex - firstIndex + 1);
+    for (int i = firstIndex; i < endIndex + 1; ++i) {
+        result[i] = a[i];
+    }
+    return result;
 }
 
 /***

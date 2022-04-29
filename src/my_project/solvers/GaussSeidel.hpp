@@ -50,7 +50,6 @@ namespace Slae::Solvers {
         } else {
             std::vector<T> r = A * initialState - b;
             std::vector<T> currentState = initialState;
-            T sum;
             while (norm(r, NormType::ThirdNorm) > tolerance) {
                 currentState = GaussSeidelIter<T>(A, b, currentState);
                 r = A * currentState - b;

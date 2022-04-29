@@ -31,9 +31,9 @@ namespace Slae::Matrix {
         Jacobi(const Slae::Matrix::CSR<El> &A, const std::vector<El> &b, const std::vector<El> &initialState,
                const El &tolerance);
 
-        template<class El>
-        friend std::vector<El>
-        GaussSeidelIter(const Slae::Matrix::CSR<El> &A, const std::vector<El> &b, std::vector<El> x);
+//        template<class El>
+//        friend std::vector<El>
+//        GaussSeidelIter(const Slae::Matrix::CSR<El> &A, const std::vector<El> &b, std::vector<El> x);
 
         template<typename El>
         friend std::vector<El> SimpleIteration(const Slae::Matrix::CSR<El> &A, const std::vector<El> &b, const El &tao);
