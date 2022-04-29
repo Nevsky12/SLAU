@@ -13,7 +13,7 @@ file(GLOB_RECURSE TEST_SOURCES test_*.cpp)  # В переменной TEST_SOURC
 foreach(TEST_FILE IN LISTS TEST_SOURCES)
     get_filename_component(TEST_FILE_NAME ${TEST_FILE} NAME_WE)
     set(EXECUTABLE_NAME run_${TEST_FILE_NAME})
-    add_executable(${EXECUTABLE_NAME} ${TEST_FILE})
+    add_executable(${EXECUTABLE_NAME} ${TEST_FILE} test_fast_gauss_zeidel.cpp test_steepest_gradient_descent.cpp test_fast_simple_iteration.cpp test_minimum_quadratic_form.cpp test_Dense_matrix.cpp test_GMRES.cpp)
     target_link_libraries(
     	${EXECUTABLE_NAME}
     	my_project	# Подключаем проект
